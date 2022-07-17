@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather App</title>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+
+  <body>
+  <div class="main-container">
+    <form id="search-form">
+      <div class="row">
+        <div class="col-3">
+          <div class="form-group">
+           <input type="text" class="form-control" id="city-input" placeholder="Enter City Here">
+          </div>
+        </div>
+        <div class="col-1.5">
+          <button type="submit" id="check-weather" class="btn btn-primary">Check Weather</button>
+        </div> 
+        <div class="col-1">
+          <button type="submit" id="current-location" class="btn btn-primary">Current Location</button>
+        </div>
+      </div>
+      </form>
+  
+  <br />
+  <h2></h2>
+  <h3></h3>
+  <div class="row">
+    <div class="col-4">
+      <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="CloudyICon">
+<span class="temp" id="temperature-number"></span><a id="celsius" href="#">℃</a>/<a id="farenheit" href="#">℉</a>   
+    </div>
+    <div class="col-3">
+  <ul>
+    <li id="weather-condition">
+    </li>
+    <li>Humidity <span id="humidity"></span>%
+    </li>
+    <li >Feels like <span id="feels-like"></span>℃
+    </li>
+  </ul>
+    </div>
+  </div>
+  <br />
+
+
+
+  <div class="container">
+    
+      <div class="row">
+          <div class="col-3">
+              Monday
+          </div>
+          <div class="col-6">
+              🌦 22℃/17℃
+          </div>
+        </div> 
+      <div class="row">
+          <div class="col-3">
+              Tuesday
+          </div>
+          <div class="col-6">
+             🌧 22℃/17℃
+          </div>
+        </div> 
+      <div class="row">
+          <div class="col-3">
+             Wednesday
+          </div>
+          <div class="col-6">
+             🌨 22℃/17℃
+          </div>
+        </div> 
+      <div class="row">
+          <div class="col-3">
+             Thursday
+          </div>
+          <div class="col-6">
+             🌩 22℃/17℃
+          </div>
+        </div> 
+      <div class="row">
+          <div class="col-3">
+              Friday
+          </div>
+          <div class="col-6">
+             ⛅ 22℃/17℃
+          </div>
+        </div> 
+      </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
+
+

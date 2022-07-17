@@ -1,0 +1,21 @@
+h2 {
+  color: blue;
+}
+.container {
+  margin: 0, auto;
+  padding: 20, 20;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+.main-container {
+  padding: 20px;
+}
+.temp {
+  font-size: 48px;
+  padding: 20px 0 10px 0;
+}
+img {
+  padding: 20px;
+}
