@@ -16,8 +16,14 @@ function formatDate(timestamp) {
 let searchForm = document.querySelector("#search-form");
 let currentLocation = document.querySelector("#current-location");
 let celsiusTemp = null;
+let temp = document.querySelector("#temperature-number");
+let fahrenheit = document.querySelector("#fahrenheit");
+let celsius = document.querySelector("#celsius");
+let weatherIcon = document.querySelector("#weather-icon");
+let cityInput = document.querySelector("#city-input");
 
 function displayWeather(response) {
+  console.log(response.data);
   document.querySelector("h2").innerHTML = response.data.name;
   celsiusTemp = response.data.main.temp;
   document.querySelector("#temperature-number").innerHTML =
@@ -28,9 +34,18 @@ function displayWeather(response) {
   document.querySelector("#feels-like").innerHTML = Math.round(
     response.data.main.feels_like
   );
-  document.querySelector("#windspeed").innerHTML = response.data.wind.speed;
+  document.querySelector("#windspeed").innerHTML = Math.round(
+    response.data.wind.speed
+  );
   document.querySelector("h3").innerHTML =
     "Last updated " + formatDate(response.data.dt * 1000);
+  weatherIcon.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
+  cityInput.value = "";
 }
 
 function searchCity(city) {
@@ -41,7 +56,7 @@ function searchCity(city) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  let city = document.querySelector("#city-input").value;
+  let city = cityInput.value;
   searchCity(city);
 }
 
@@ -57,9 +72,6 @@ function runCurrent() {
   navigator.geolocation.getCurrentPosition(showCurrentWeather);
 }
 
-let temp = document.querySelector("#temperature-number");
-let fahrenheit = document.querySelector("#fahrenheit");
-let celsius = document.querySelector("#celsius");
 function displayFahrenheit(event) {
   event.preventDefault();
   temp.innerHTML = Math.round((celsiusTemp * 9) / 5 + 32);
