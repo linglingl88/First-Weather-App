@@ -28,7 +28,9 @@ function displayWeather(response) {
   document.querySelector("#feels-like").innerHTML = Math.round(
     response.data.main.feels_like
   );
-  document.querySelector("h3").innerHTML = formatDate(response.data.dt * 1000);
+  document.querySelector("#windspeed").innerHTML = response.data.wind.speed;
+  document.querySelector("h3").innerHTML =
+    "Last updated " + formatDate(response.data.dt * 1000);
 }
 
 function searchCity(city) {
