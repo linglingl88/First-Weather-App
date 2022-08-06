@@ -1,29 +1,32 @@
-h2 {
-  color: blue;
-}
-.main-container {
-  padding: 10px;
-  border: solid rgba(200, 200, 200, 0.6) 2px;
-  border-radius: 5px;
-  max-width: 700px;
-}
 ul {
   list-style: none;
   padding: 0;
 }
-.container {
-  padding: 10px;
-}
-.temp {
-  font-size: 48px;
-  padding: 20px 0 10px 0;
-}
 img {
   padding: 20px;
+  opacity: 0.8;
 }
-.coded-by {
+small {
   font-size: 12px;
+  margin: 20px, 0px;
+}
+.weather-app-wrapper {
+  margin: 30px auto;
+  max-width: 700px;
+}
+.weather-app {
   padding: 20px;
+  border: 2px solid rgba(200, 200, 200, 0.6);
+  border-radius: 5px;
+}
+.temp {
+  font-size: 60px;
+  position: relative;
+  top: 14px;
+}
+.temp-units {
+  position: relative;
+  top: 14px;
 }
 .active {
   color: black;
@@ -36,15 +39,19 @@ img {
 .forecast-icon {
   max-width: 80px;
   padding: 0;
+  opacity: 0.9;
 }
 .weather-forecast {
   text-align: center;
   padding: 0;
 }
 .day-forecast:hover {
-  background-color: rgba(250, 128, 114, 0.2);
+  background-color: rgba(250, 128, 114, 0.1);
   transition: all 200ms ease-in-out;
 }
 .forecast-temp-min {
   opacity: 0.6;
+}
+.forecast-temp-max {
+  font-weight: 600;
 }

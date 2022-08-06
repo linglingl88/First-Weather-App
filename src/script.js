@@ -46,7 +46,7 @@ function displayForecast(response) {
         forecastHTML +
         `
         <div class="col-2 day-forecast">
-          <div>${formatDay(forecastDay.dt)}</div> 
+          <div><h5>${formatDay(forecastDay.dt)}</h5></div> 
           <img src="https://openweathermap.org/img/wn/${
             forecastDay.weather[0].icon
           }@2x.png" class="forecast-icon" id="forecast-icon">
@@ -79,7 +79,7 @@ function displayWeather(response) {
   document.querySelector("#windspeed").innerHTML = Math.round(
     response.data.wind.speed
   );
-  document.querySelector("h3").innerHTML =
+  document.querySelector("h4").innerHTML =
     "Last updated " + formatDate(response.data.dt * 1000);
   weatherIcon.setAttribute(
     "src",
