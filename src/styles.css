@@ -48,6 +48,7 @@ small {
 .day-forecast:hover {
   background-color: rgba(250, 128, 114, 0.1);
   transition: all 200ms ease-in-out;
+  border-radius: 5%;
 }
 .forecast-temp-min {
   opacity: 0.6;

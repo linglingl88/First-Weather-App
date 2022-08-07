@@ -24,22 +24,21 @@ let cityInput = document.querySelector("#city-input");
 
 function getForecast(coordinates) {
   let apiKey = "d4996adfc0c3206b46891c9a2623b3a9";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayForecast);
 }
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  return days[day];
+  let weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return weekdays[day];
 }
 
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-
   forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
       forecastHTML =
@@ -67,9 +66,9 @@ function displayForecast(response) {
 
 function displayWeather(response) {
   document.querySelector("h2").innerHTML = response.data.name;
-  celsiusTemp = response.data.main.temp;
+  fahrenheitTemp = response.data.main.temp;
   document.querySelector("#temperature-number").innerHTML =
-    Math.round(celsiusTemp);
+    Math.round(fahrenheitTemp);
   document.querySelector("#weather-condition").innerHTML =
     response.data.weather[0].main;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
@@ -77,7 +76,7 @@ function displayWeather(response) {
     response.data.main.feels_like
   );
   document.querySelector("#windspeed").innerHTML = Math.round(
-    response.data.wind.speed
+    response.data.wind.speed * 0.621
   );
   document.querySelector("h4").innerHTML =
     "Last updated " + formatDate(response.data.dt * 1000);
@@ -85,16 +84,16 @@ function displayWeather(response) {
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
-  celsius.classList.add("active");
-  fahrenheit.classList.remove("active");
+  fahrenheit.classList.add("active");
+  celsius.classList.remove("active");
   cityInput.value = "";
   getForecast(response.data.coord);
 }
 
 function searchCity(city) {
   let apiKey = "d4996adfc0c3206b46891c9a2623b3a9";
-  let apiUrlCelsius = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrlCelsius).then(displayWeather);
+  let apiUrlFahrenheit = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrlFahrenheit).then(displayWeather);
 }
 
 function handleSubmit(event) {
@@ -107,7 +106,7 @@ function showCurrentWeather(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
   let apiKey = "d4996adfc0c3206b46891c9a2623b3a9";
-  let apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  let apiUrlCurrent = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrlCurrent).then(displayWeather);
 }
 
@@ -117,19 +116,19 @@ function runCurrent() {
 
 function displayFahrenheit(event) {
   event.preventDefault();
-  temp.innerHTML = Math.round((celsiusTemp * 9) / 5 + 32);
+  temp.innerHTML = Math.round(fahrenheitTemp);
   fahrenheit.classList.add("active");
   celsius.classList.remove("active");
 }
 function displayCelsius(event) {
   event.preventDefault();
-  temp.innerHTML = Math.round(celsiusTemp);
+  temp.innerHTML = Math.round(((fahrenheitTemp - 32) * 5) / 9);
   celsius.classList.add("active");
   fahrenheit.classList.remove("active");
 }
 
 formatDate();
-searchCity("Oakland");
+searchCity("San Francisco");
 searchForm.addEventListener("submit", handleSubmit);
 currentLocation.addEventListener("click", runCurrent);
 fahrenheit.addEventListener("click", displayFahrenheit);
