@@ -1,17 +1,16 @@
+img {
+  opacity: 0.9;
+}
 ul {
   list-style: none;
   padding: 0;
-}
-img {
-  padding: 20px;
-  opacity: 0.8;
 }
 small {
   font-size: 12px;
   margin: 20px, 0px;
 }
 .weather-app-wrapper {
-  margin: 30px auto;
+  margin: 20px auto;
   max-width: 700px;
 }
 .weather-app {
@@ -38,8 +37,6 @@ small {
 }
 .forecast-icon {
   max-width: 80px;
-  padding: 0;
-  opacity: 0.9;
 }
 .weather-forecast {
   text-align: center;

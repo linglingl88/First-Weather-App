@@ -36,6 +36,7 @@ function formatDay(timestamp) {
 }
 
 function displayForecast(response) {
+  console.log(response);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
@@ -48,7 +49,9 @@ function displayForecast(response) {
           <div><h5>${formatDay(forecastDay.dt)}</h5></div> 
           <img src="https://openweathermap.org/img/wn/${
             forecastDay.weather[0].icon
-          }@2x.png" class="forecast-icon" id="forecast-icon">
+          }@2x.png" class="forecast-icon" id="forecast-icon" alt="${
+          forecastDay.weather[0].description
+        }">
           <div>
             <span id="forecast-temp-max" class="forecast-temp-max">${Math.round(
               forecastDay.temp.max
@@ -84,6 +87,7 @@ function displayWeather(response) {
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  weatherIcon.setAttribute("alt", `${response.data.weather[0].description}`);
   fahrenheit.classList.add("active");
   celsius.classList.remove("active");
   cityInput.value = "";
